@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comparación visual de Fixed-size, Semantic breakpoint y Structure-aware sobre QASPER.">
+  <title>Chunking RAG · QASPER</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span><strong>Chunking RAG</strong><small>QASPER · calidad y costo</small></span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#metodos">Métodos</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#ejemplo">Ejemplo</a>
+        <a href="#cierre">Lectura</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Evaluación sobre QASPER</p>
+          <h1>Dividir mejor el texto sin pagar de más.</h1>
+          <p class="hero-lede">Comparamos tres maneras de construir chunks para un RAG ligero: una regla fija, un corte guiado por significado y una alternativa que aprovecha los párrafos del documento.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#resultados">Ver resultados</a>
+            <a class="button secondary" href="#metodos">Comparar métodos</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Resumen visual de las tres estrategias">
+          <div class="paper-source" aria-hidden="true">
+            <b>paper</b>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="hero-methods">
+            <article class="method-mini fixed">
+              <span class="method-number">01</span>
+              <div class="mini-track equal"><i></i><i></i><i></i></div>
+              <strong>Por tamaño</strong><small>Fixed-size</small>
+            </article>
+            <article class="method-mini breakpoint">
+              <span class="method-number">02</span>
+              <div class="mini-track semantic"><i></i><i></i><i></i></div>
+              <strong>Por cambio de tema</strong><small>Semantic breakpoint</small>
+            </article>
+            <article class="method-mini structure">
+              <span class="method-number">03</span>
+              <div class="mini-track structural"><i></i><i></i><i></i><i></i></div>
+              <strong>Por estructura</strong><small>Structure-aware</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement-band">
+      <div class="shell statement reveal">
+        <span class="statement-rule" aria-hidden="true"></span>
+        <h2>La comparación no es solo calidad. También es el trabajo que cuesta obtenerla.</h2>
+        <p>Por eso leemos F1, tiempo, tokens y tamaño de los chunks en una misma vista.</p>
+      </div>
+    </section>
+
+    <section class="section" id="metodos" aria-labelledby="metodos-title">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">Cómo funciona</p><h2 id="metodos-title">El mismo documento, tres reglas de corte</h2></div>
+          <p>Cambia de método para ver qué información usa cada estrategia y cómo termina agrupando las mismas oraciones.</p>
+        </div>
+
+        <div class="method-switcher reveal" role="group" aria-label="Estrategia de chunking">
+          <button class="method-tab active" type="button" data-method="fixed" aria-pressed="true"><span>01</span> Por tamaño</button>
+          <button class="method-tab" type="button" data-method="breakpoint" aria-pressed="false"><span>02</span> Cambio de tema</button>
+          <button class="method-tab" type="button" data-method="structure" aria-pressed="false"><span>03</span> Estructura</button>
+        </div>
+
+        <div class="method-demo reveal" id="method-demo" aria-live="polite">
+          <div class="demo-column">
+            <div class="demo-label">Documento</div>
+            <div class="sentence-list" id="demo-sentences"></div>
+          </div>
+          <div class="demo-column decision-column">
+            <div class="demo-label">Qué observa</div>
+            <div class="decision-stage" id="demo-decision"></div>
+          </div>
+          <div class="demo-column">
+            <div class="demo-label">Chunks resultantes</div>
+            <div class="chunk-list" id="demo-chunks"></div>
+          </div>
+        </div>
+        <div class="method-caption reveal" id="method-caption"></div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="resultados" aria-labelledby="resultados-title">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">Resultados</p><h2 id="resultados-title">Qué ocurrió en la ejecución guardada</h2></div>
+          <div class="run-meta" id="run-meta"></div>
+        </div>
+
+        <div class="score-strip reveal" id="score-strip"></div>
+
+        <article class="result-story reveal" id="result-story">
+          <div class="story-copy">
+            <p class="story-kicker">Lectura conjunta</p>
+            <h3 id="story-title"></h3>
+            <p id="story-copy"></p>
+          </div>
+          <div class="story-deltas" id="story-deltas"></div>
+        </article>
+
+        <div class="chart-grid two-columns">
+          <article class="chart-card reveal">
+            <div class="chart-head">
+              <div><p class="chart-kicker">Calidad</p><h3>Precision, Recall y F1 según cuántos chunks recuperamos</h3></div>
+              <label class="select-label">Métrica
+                <select id="quality-metric">
+                  <option value="f1">F1</option>
+                  <option value="precision">Precisión</option>
+                  <option value="recall">Recall</option>
+                </select>
+              </label>
+            </div>
+            <div class="chart-canvas" id="quality-chart"></div>
+          </article>
+
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><p class="chart-kicker">Tokens</p><h3>Cuánto texto procesa el modelo antes de recuperar</h3></div></div>
+            <div class="chart-canvas" id="token-chart"></div>
+            <div class="legend-inline"><span><i class="legend-index"></i>Indexar chunks</span><span><i class="legend-decision"></i>Decidir cortes semánticos</span></div>
+          </article>
+        </div>
+
+        <div class="chart-grid two-columns">
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><p class="chart-kicker">Tiempo</p><h3>Segmentar e indexar</h3></div></div>
+            <div class="chart-canvas" id="time-chart"></div>
+            <div class="legend-inline"><span><i class="legend-chunking"></i>Segmentación</span><span><i class="legend-index"></i>Indexación</span></div>
+          </article>
+
+          <article class="chart-card reveal">
+            <div class="chart-head">
+              <div><p class="chart-kicker">Calidad / costo</p><h3>La posición deseable está arriba y a la izquierda</h3></div>
+              <div class="toggle-pills" role="group" aria-label="Costo para el gráfico">
+                <button type="button" class="active" data-cost="tokens" aria-pressed="true">Tokens</button>
+                <button type="button" data-cost="time" aria-pressed="false">Tiempo</button>
+              </div>
+            </div>
+            <div class="chart-canvas scatter-canvas" id="tradeoff-chart"></div>
+          </article>
+        </div>
+
+        <div class="strategy-facts reveal" id="strategy-facts"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ejemplo" aria-labelledby="ejemplo-title">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">Ejemplo real</p><h2 id="ejemplo-title">El mismo paper cambia de forma según el método</h2></div>
+          <p>Estos fragmentos provienen del documento que quedó guardado en la ejecución del notebook.</p>
+        </div>
+        <div class="example-shell reveal">
+          <div class="example-toolbar">
+            <div><span>Documento</span><h3 id="example-document-title"></h3></div>
+            <div class="strategy-tabs" id="strategy-tabs" role="group" aria-label="Estrategia del ejemplo"></div>
+          </div>
+          <div class="chunk-preview-grid" id="chunk-preview-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section conclusion-section" id="cierre" aria-labelledby="cierre-title">
+      <div class="shell">
+        <div class="closing-grid reveal">
+          <div><p class="eyebrow">Lectura</p><h2 id="cierre-title">Structure-aware busca conservar estructura sin pagar el costo semántico.</h2></div>
+          <div class="closing-copy" id="closing-copy"></div>
+        </div>
+
+        <details class="technical-details reveal">
+          <summary>Configuración del experimento</summary>
+          <div class="technical-grid" id="technical-content"></div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><strong>Chunking RAG</strong><p>Proyecto académico · Universidad Icesi</p></div>
+      <p>Fixed-size · Semantic breakpoint · Structure-aware</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/results-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

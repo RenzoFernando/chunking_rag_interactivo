@@ -1,0 +1,20 @@
+{
+  "seed": 42,
+  "demo_mode": true,
+  "split": "validation",
+  "n_docs": 20,
+  "n_questions": 40,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "max_sequence_length": 256,
+  "fixed_chunk_size": 6,
+  "fixed_overlap": 1,
+  "semantic_target_chunks": 8,
+  "structure_max_sentences": 8,
+  "structure_overlap": 1,
+  "top_k_values": [
+    1,
+    3,
+    5,
+    10
+  ]
+}

@@ -1,0 +1,2 @@
+# La landing y app.py usan únicamente la biblioteca estándar de Python.
+# Las dependencias del experimento se instalan desde el notebook.

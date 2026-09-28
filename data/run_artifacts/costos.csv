@@ -1,0 +1,4 @@
+strategy,chunking_seconds,indexing_seconds,total_preprocess_seconds,n_chunks,avg_sentences_per_chunk,chunk_index_raw_tokens,chunk_index_effective_tokens,semantic_decision_raw_tokens,semantic_decision_effective_tokens,total_embedding_effective_tokens,avg_raw_tokens_per_chunk,avg_effective_tokens_per_chunk,p95_raw_tokens_per_chunk,p95_effective_tokens_per_chunk,truncated_chunks
+Fixed-size,0.00716789998114109,71.3988618000003,71.40602969998145,622,5.918006430868167,116976,113325,0,0,113325,188.06430868167203,182.1945337620579,293.94999999999993,256.0,69
+Semantic breakpoint,33.848966200021096,6.700511899980484,40.54947810000158,160,19.24375,97590,29136,103428,103341,132477,609.9375,182.1,2174.2999999999997,256.0,95
+Structure-aware,0.01538639998761937,27.137447600020096,27.152834000007715,971,3.196704428424305,99984,99405,0,0,99405,102.97013388259526,102.37384140061792,217.0,217.0,18
