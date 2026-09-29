@@ -75,9 +75,18 @@
         </div>
 
         <div class="method-switcher reveal" role="group" aria-label="Estrategia de chunking">
-          <button class="method-tab active" type="button" data-method="fixed" aria-pressed="true"><span>01</span> Por tamaño</button>
-          <button class="method-tab" type="button" data-method="breakpoint" aria-pressed="false"><span>02</span> Cambio de tema</button>
-          <button class="method-tab" type="button" data-method="structure" aria-pressed="false"><span>03</span> Estructura</button>
+          <button class="method-tab active" type="button" data-method="fixed" aria-pressed="true">
+            <span class="method-number">01</span>
+            <span class="method-tab-copy"><strong>Por tamaño</strong><small>Fixed-size</small></span>
+          </button>
+          <button class="method-tab" type="button" data-method="breakpoint" aria-pressed="false">
+            <span class="method-number">02</span>
+            <span class="method-tab-copy"><strong>Cambio de tema</strong><small>Semantic breakpoint</small></span>
+          </button>
+          <button class="method-tab" type="button" data-method="structure" aria-pressed="false">
+            <span class="method-number">03</span>
+            <span class="method-tab-copy"><strong>Por estructura</strong><small>Structure-aware</small></span>
+          </button>
         </div>
 
         <div class="method-flow reveal" id="method-flow" aria-live="polite">
@@ -96,7 +105,6 @@
             <div class="chunk-list" id="demo-chunks"></div>
           </div>
         </div>
-        <div class="method-caption reveal" id="method-caption"></div>
       </div>
     </section>
 
@@ -205,11 +213,12 @@
       </div>
     </section>
 
-    <section class="section conclusion-section" id="configuracion" aria-labelledby="configuracion-title">
+    <section class="section conclusion-section" id="configuracion" aria-labelledby="conclusion-heading">
       <div class="shell">
         <div class="conclusion-grid reveal">
-          <div>
-            <h2 id="conclusion-title"></h2>
+          <div class="conclusion-copy-block">
+            <h2 id="conclusion-heading">Conclusión</h2>
+            <h3 id="conclusion-title"></h3>
           </div>
           <div class="conclusion-stats" id="conclusion-stats"></div>
         </div>
