@@ -20,17 +20,11 @@ Este proyecto compara tres estrategias bajo un mismo pipeline experimental:
 
 La evaluación utiliza métricas de **Precision, Recall y F1** para recuperación de evidencia, junto con métricas de costo como tiempo de procesamiento, tokens efectivos y cantidad de chunks truncados.
 
-Además del notebook experimental, el repositorio incluye una landing interactiva que permite explorar los resultados, comparar las estrategias y visualizar ejemplos de segmentación.
-
-## Demo
-
-Puedes explorar la visualización interactiva del experimento en:
-
-https://renzofernando.github.io/chunking_rag_interactivo/
+Además del notebook experimental, el repositorio incluye una landing interactiva para explorar los resultados, comparar las estrategias y visualizar ejemplos de segmentación.
 
 ## Objetivo
 
-Evaluar qué comportamiento ofrecen distintas estrategias de chunking al equilibrar calidad de recuperación y costo computacional en documentos científicos utilizados dentro de un pipeline RAG.
+Evaluar el comportamiento de distintas estrategias de chunking al equilibrar calidad de recuperación y costo computacional en documentos científicos utilizados dentro de un pipeline RAG.
 
 ## Alcance
 
@@ -39,10 +33,11 @@ Evaluar qué comportamiento ofrecen distintas estrategias de chunking al equilib
 - Comparación de tres estrategias de chunking.
 - Medición de Precision, Recall y F1.
 - Medición de tiempo, tokens efectivos y chunks truncados.
-- Exportación de resultados en JSON, CSV y JavaScript para su visualización.
-- Landing interactiva para consultar los resultados sin volver a ejecutar el experimento.
+- Exportación de resultados en JSON, CSV y JavaScript.
+- Visualización interactiva de los resultados mediante una landing web.
+- Importación y sincronización de nuevas corridas experimentales.
 
-La corrida incluida se concentra en la etapa de segmentación y recuperación. La exportación no presenta respuestas generadas por un modelo cuando esa generación no fue ejecutada.
+La corrida incluida se concentra en las etapas de segmentación y recuperación. La exportación no presenta respuestas generadas por un modelo cuando esa generación no fue ejecutada.
 
 ## Tecnologías
 
@@ -87,6 +82,10 @@ La corrida incluida en el repositorio utiliza:
 - Un navegador web moderno.
 
 `app.py` y la landing utilizan únicamente la biblioteca estándar de Python, por lo que no es necesario instalar dependencias adicionales para visualizar los resultados incluidos.
+
+También puedes consultar directamente la versión publicada en GitHub Pages:
+
+https://renzofernando.github.io/chunking_rag_interactivo/
 
 ### Para reproducir el experimento
 
@@ -137,7 +136,7 @@ La landing también puede abrirse directamente desde `index.html`, ya que `asset
 
 ### Reproducir el experimento
 
-El notebook principal de la corrida incluida es:
+El notebook principal es:
 
 ```text
 Experimento_Paper_Chunking_QASPER.ipynb
@@ -162,7 +161,7 @@ metrics.csv
 results-data.js
 ```
 
-También puede producir un paquete ZIP con los resultados para importarlo en la aplicación.
+También puede producir `resultados_chunking_para_web.zip`, utilizado para transportar una corrida completa hacia la landing.
 
 ### Importar una nueva corrida
 
@@ -205,26 +204,37 @@ results.json / metrics.csv / results-data.js
 Landing interactiva
 ```
 
-Los componentes principales son:
+Estructura principal del repositorio:
 
 ```text
 chunking_rag_interactivo/
 ├── Experimento_Paper_Chunking_QASPER.ipynb
-├── RAG_Chunking_Paper.ipynb
-├── colab_chunking_rag.ipynb
+├── LICENSE
+├── README.md
 ├── app.py
 ├── index.html
 ├── requirements.txt
+├── resultados_chunking_para_web.zip
 ├── assets/
 │   ├── css/
 │   │   └── main.css
 │   └── js/
 │       ├── main.js
 │       └── results-data.js
-└── data/
-    ├── metrics.csv
-    ├── results.json
-    └── run_artifacts/
+├── data/
+│   ├── metrics.csv
+│   ├── results.json
+│   └── run_artifacts/
+│       ├── calidad_vs_costo.csv
+│       ├── configuracion.json
+│       ├── costos.csv
+│       ├── metricas_por_pregunta.csv
+│       ├── metricas_resumen.csv
+│       ├── metrics.csv
+│       ├── results-data.js
+│       └── results.json
+└── doc/
+    └── paper_chunking_RAG.pdf
 ```
 
 `app.py` permite importar resultados, sincronizar los datos utilizados por la landing y servir la interfaz mediante un servidor HTTP local.
@@ -241,11 +251,19 @@ Resultados principales de la corrida incluida:
 | Tiempo total | 1,019.7 s | 1,211.6 s | 860.4 s |
 | Chunks truncados | 36 | 385 | 7 |
 
-En esta corrida, **Fixed-size** obtiene el F1 más alto en `k = 5` por un margen pequeño frente a **Structure-aware**. En `k = 10`, **Structure-aware** obtiene el F1 más alto y, al mismo tiempo, registra menos tokens efectivos, menor tiempo total y menos chunks truncados que las otras dos estrategias.
+En esta corrida, **Fixed-size** obtiene el F1 más alto en `k = 5` por un margen pequeño frente a **Structure-aware**.
+
+En `k = 10`, **Structure-aware** obtiene el F1 más alto y, al mismo tiempo, registra menos tokens efectivos, menor tiempo total y menos chunks truncados que las otras dos estrategias.
 
 **Semantic breakpoint** alcanza el Recall más alto en `k = 10` (`0.2245`), pero presenta valores de F1 inferiores y un costo computacional mayor en esta misma ejecución.
 
-Los tiempos deben interpretarse únicamente como una comparación entre estrategias dentro de la misma corrida y entorno de ejecución; no representan latencias universales.
+Los tiempos sirven para comparar las estrategias dentro de esta corrida y del mismo entorno de ejecución; no deben interpretarse como latencias universales.
+
+## Documentación
+
+- [Propuesta Paper del proyecto](doc/paper_chunking_RAG.pdf)
+- [Demo interactiva](https://renzofernando.github.io/chunking_rag_interactivo/)
+- [Repositorio en GitHub](https://github.com/RenzoFernando/chunking_rag_interactivo)
 
 ## Autores
 
