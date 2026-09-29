@@ -1,73 +1,257 @@
-# Chunking RAG · QASPER
+# Chunking eficiente para RAG: calidad vs. costo computacional
 
-La fuente de verdad del proyecto es `Experimento_Paper_Chunking_QASPER.ipynb`. La comparación usa **Fixed-size**, **Semantic breakpoint** y **Structure-aware** sobre QASPER.
+Experimento de Retrieval-Augmented Generation (RAG) que compara estrategias de segmentación de documentos científicos para analizar la relación entre calidad de recuperación y costo computacional.
 
-## Qué se corrigió
+## Contexto académico
 
-El notebook ahora exporta resultados de forma compatible con Windows, Jupyter local y Google Colab. El problema anterior era que la exportación siempre usaba `/content`: en Windows eso terminaba creando archivos fuera de la carpeta del proyecto, mientras `index.html` seguía leyendo el `results-data.js` vacío incluido originalmente.
+Proyecto desarrollado para el curso **Inteligencia Artificial** de la **Universidad ICESI**.
 
-Si el notebook se ejecuta dentro de esta carpeta, al finalizar actualiza directamente:
+El trabajo realiza una replicación parcial y una extensión del artículo *Is Semantic Chunking Worth the Computational Cost?* de Qu, Tu y Bao (NAACL 2025), aplicando la comparación sobre el dataset QASPER.
 
-```text
-data/results.json
-assets/js/results-data.js
-data/metrics.csv
+## Descripción
+
+En los sistemas RAG, los documentos extensos se dividen en fragmentos (*chunks*) antes de indexarlos y recuperar evidencia relevante para una consulta. La estrategia utilizada para construir esos fragmentos puede afectar tanto la calidad de recuperación como el costo de procesamiento.
+
+Este proyecto compara tres estrategias bajo un mismo pipeline experimental:
+
+- **Fixed-size:** divide el documento en grupos de oraciones de tamaño fijo y utiliza solapamiento.
+- **Semantic breakpoint:** detecta cambios semánticos entre oraciones consecutivas para decidir los puntos de corte.
+- **Structure-aware:** aprovecha la estructura de secciones y párrafos del documento para construir fragmentos de forma ligera.
+
+La evaluación utiliza métricas de **Precision, Recall y F1** para recuperación de evidencia, junto con métricas de costo como tiempo de procesamiento, tokens efectivos y cantidad de chunks truncados.
+
+Además del notebook experimental, el repositorio incluye una landing interactiva que permite explorar los resultados, comparar las estrategias y visualizar ejemplos de segmentación.
+
+## Demo
+
+Puedes explorar la visualización interactiva del experimento en:
+
+https://renzofernando.github.io/chunking_rag_interactivo/
+
+## Objetivo
+
+Evaluar qué comportamiento ofrecen distintas estrategias de chunking al equilibrar calidad de recuperación y costo computacional en documentos científicos utilizados dentro de un pipeline RAG.
+
+## Alcance
+
+- Dataset científico **QASPER**.
+- Evaluación de recuperación de evidencia para `k = 1, 3, 5, 10`.
+- Comparación de tres estrategias de chunking.
+- Medición de Precision, Recall y F1.
+- Medición de tiempo, tokens efectivos y chunks truncados.
+- Exportación de resultados en JSON, CSV y JavaScript para su visualización.
+- Landing interactiva para consultar los resultados sin volver a ejecutar el experimento.
+
+La corrida incluida se concentra en la etapa de segmentación y recuperación. La exportación no presenta respuestas generadas por un modelo cuando esa generación no fue ejecutada.
+
+## Tecnologías
+
+- Python
+- Jupyter Notebook / Google Colab
+- Hugging Face `datasets`
+- Sentence Transformers
+- spaCy
+- RapidFuzz
+- pandas
+- NumPy
+- Matplotlib
+- ipywidgets
+- HTML5
+- CSS3
+- JavaScript
+
+## Datos y configuración experimental
+
+La corrida incluida en el repositorio utiliza:
+
+| Parámetro | Valor |
+| --- | --- |
+| Dataset | QASPER |
+| Split | `validation` |
+| Documentos | 100 |
+| Preguntas | 250 |
+| Modelo de embeddings | `sentence-transformers/all-mpnet-base-v2` |
+| Semilla | 42 |
+| Valores de `k` | 1, 3, 5, 10 |
+| Fixed chunk size | 6 oraciones |
+| Fixed overlap | 1 oración |
+| Semantic target chunks | 8 |
+| Structure max sentences | 8 |
+| Structure overlap | 1 oración |
+
+## Requisitos
+
+### Para visualizar la landing
+
+- Python 3.
+- Un navegador web moderno.
+
+`app.py` y la landing utilizan únicamente la biblioteca estándar de Python, por lo que no es necesario instalar dependencias adicionales para visualizar los resultados incluidos.
+
+### Para reproducir el experimento
+
+El notebook instala las dependencias necesarias para la ejecución experimental:
+
+```bash
+pip install datasets sentence-transformers spacy rapidfuzz pandas numpy matplotlib ipywidgets
 ```
 
-Por tanto, después de **Run all** basta con recargar `index.html`. No hay que copiar datos manualmente.
+Se recomienda ejecutar el experimento desde Google Colab o un entorno Jupyter equivalente.
 
-También se corrigieron las advertencias que parecían errores: el conteo de tokens ya no fuerza secuencias mayores al límite del tokenizer, se usa la API actual para consultar la dimensión del embedding y se desactiva la advertencia de symlinks de Hugging Face en Windows.
+## Ejecución
 
-La evaluación conserva la lógica del notebook recibido. Se añadió `k=10` para mantener `k = {1, 3, 5, 10}` en futuras ejecuciones.
+### Visualizar los resultados incluidos
 
-## La ejecución que ya hiciste
+Clona el repositorio:
 
-El notebook que enviaste conserva una ejecución de prueba con `DEMO_MODE=True`: **20 documentos y 40 preguntas**. Esta entrega recupera esos resultados guardados y los muestra desde el primer momento en la landing.
-
-En esa ejecución:
-
-| Estrategia | F1@5 | Tokens de embeddings | Tiempo total | Chunks truncados |
-|---|---:|---:|---:|---:|
-| Fixed-size | 0.0678 | 113,325 | 29.76 s | 69 |
-| Semantic breakpoint | 0.0469 | 132,477 | 44.52 s | 95 |
-| Structure-aware | 0.0877 | 99,405 | 32.09 s | 18 |
-
-Son resultados de la **muestra de verificación**, no de una corrida final completa.
-
-## Volver a ejecutar
-
-Abre `Experimento_Paper_Chunking_QASPER.ipynb` desde esta misma carpeta y ejecuta todas las celdas.
-
-Para una prueba corta:
-
-```python
-DEMO_MODE = True
+```bash
+git clone https://github.com/RenzoFernando/chunking_rag_interactivo.git
+cd chunking_rag_interactivo
 ```
 
-Para la ejecución más amplia definida en el notebook:
-
-```python
-DEMO_MODE = False
-```
-
-Al terminar se crea además `resultados_chunking_para_web.zip` como copia portable de los resultados.
-
-## Abrir la landing
-
-Puede abrirse `index.html` directamente. Si prefieres un servidor local:
+Inicia el servidor local:
 
 ```bash
 python app.py
 ```
 
-Si la corrida se hizo en Google Colab y descargaste `resultados_chunking_para_web.zip`, colócalo en la raíz del proyecto y ejecuta `python app.py`: el script lo detecta e importa si es más reciente. También puedes hacerlo explícitamente:
+La presentación queda disponible por defecto en:
+
+```text
+http://127.0.0.1:8000/
+```
+
+`app.py` abre el navegador automáticamente. Para iniciar el servidor sin abrirlo:
+
+```bash
+python app.py --no-browser
+```
+
+Para utilizar otro puerto:
+
+```bash
+python app.py --port 9000
+```
+
+La landing también puede abrirse directamente desde `index.html`, ya que `assets/js/results-data.js` contiene la misma corrida almacenada en `data/results.json`.
+
+### Reproducir el experimento
+
+El notebook principal de la corrida incluida es:
+
+```text
+Experimento_Paper_Chunking_QASPER.ipynb
+```
+
+Ejecuta sus celdas en orden para:
+
+1. instalar las dependencias;
+2. cargar QASPER;
+3. normalizar los documentos y preguntas;
+4. generar chunks con las tres estrategias;
+5. calcular embeddings y recuperar evidencia;
+6. evaluar Precision, Recall y F1;
+7. medir costos de procesamiento;
+8. exportar los artefactos de resultados.
+
+El notebook genera, entre otros archivos:
+
+```text
+results.json
+metrics.csv
+results-data.js
+```
+
+También puede producir un paquete ZIP con los resultados para importarlo en la aplicación.
+
+### Importar una nueva corrida
+
+Para cargar un ZIP o una carpeta de resultados generada por el notebook:
 
 ```bash
 python app.py --import-results resultados_chunking_para_web.zip
 ```
 
-## Qué muestra la landing
+Para regenerar `assets/js/results-data.js` a partir de `data/results.json`:
 
-La página representa los tres métodos con una animación que inicia cuando la sección entra en pantalla y vuelve a ejecutarse cada vez que se cambia de método. Los resultados incluyen F1/Precision/Recall por `k`, tokens, tiempo, calidad frente a costo, tamaño y truncamiento de chunks, y un ejemplo real guardado en el notebook.
+```bash
+python app.py --sync
+```
 
-La lectura final se calcula a partir de los valores presentes en `results.json`; no está escrita para forzar una conclusión distinta a lo que produzca la corrida.
+## Arquitectura
+
+El flujo principal del proyecto es:
+
+```text
+QASPER
+  │
+  ▼
+Notebook experimental
+  │
+  ├── Fixed-size
+  ├── Semantic breakpoint
+  └── Structure-aware
+  │
+  ▼
+Embeddings + recuperación de evidencia
+  │
+  ▼
+Métricas de calidad y costo
+  │
+  ▼
+results.json / metrics.csv / results-data.js
+  │
+  ▼
+Landing interactiva
+```
+
+Los componentes principales son:
+
+```text
+chunking_rag_interactivo/
+├── Experimento_Paper_Chunking_QASPER.ipynb
+├── RAG_Chunking_Paper.ipynb
+├── colab_chunking_rag.ipynb
+├── app.py
+├── index.html
+├── requirements.txt
+├── assets/
+│   ├── css/
+│   │   └── main.css
+│   └── js/
+│       ├── main.js
+│       └── results-data.js
+└── data/
+    ├── metrics.csv
+    ├── results.json
+    └── run_artifacts/
+```
+
+`app.py` permite importar resultados, sincronizar los datos utilizados por la landing y servir la interfaz mediante un servidor HTTP local.
+
+## Resultados
+
+Resultados principales de la corrida incluida:
+
+| Métrica | Fixed-size | Semantic breakpoint | Structure-aware |
+| --- | ---: | ---: | ---: |
+| F1@5 | 0.0515 | 0.0302 | 0.0505 |
+| F1@10 | 0.0471 | 0.0248 | 0.0672 |
+| Tokens efectivos | 572,404 | 711,032 | 492,023 |
+| Tiempo total | 1,019.7 s | 1,211.6 s | 860.4 s |
+| Chunks truncados | 36 | 385 | 7 |
+
+En esta corrida, **Fixed-size** obtiene el F1 más alto en `k = 5` por un margen pequeño frente a **Structure-aware**. En `k = 10`, **Structure-aware** obtiene el F1 más alto y, al mismo tiempo, registra menos tokens efectivos, menor tiempo total y menos chunks truncados que las otras dos estrategias.
+
+**Semantic breakpoint** alcanza el Recall más alto en `k = 10` (`0.2245`), pero presenta valores de F1 inferiores y un costo computacional mayor en esta misma ejecución.
+
+Los tiempos deben interpretarse únicamente como una comparación entre estrategias dentro de la misma corrida y entorno de ejecución; no representan latencias universales.
+
+## Autores
+
+- [Renzo Fernando Mosquera Daza](https://github.com/RenzoFernando)
+- [Luna Catalina Martínez Vásquez](https://github.com/LunaKtalina)
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia MIT. Consulta [LICENSE](LICENSE) para conocer los términos completos.

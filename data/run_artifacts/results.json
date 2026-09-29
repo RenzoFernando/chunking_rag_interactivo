@@ -4,16 +4,16 @@
     "mode": "notebook_run",
     "basis": "Experimento_Paper_Chunking_QASPER.ipynb",
     "dataset": "QASPER",
-    "generated_at": "2026-09-28T13:24:46-0500"
+    "generated_at": "2026-09-28T22:15:41-0500"
   },
   "run": {
     "seed": 42,
-    "demo_mode": true,
+    "demo_mode": false,
     "split": "validation",
-    "n_docs": 20,
-    "n_questions": 40,
-    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-    "max_sequence_length": 256,
+    "n_docs": 100,
+    "n_questions": 250,
+    "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+    "max_sequence_length": 384,
     "fixed_chunk_size": 6,
     "fixed_overlap": 1,
     "semantic_target_chunks": 8,
@@ -30,149 +30,149 @@
     {
       "strategy": "Fixed-size",
       "k": 1,
-      "precision": 0.054166666666666675,
-      "recall": 0.018927125506072874,
-      "f1": 0.026228070175438593
+      "precision": 0.07,
+      "recall": 0.035714153683076,
+      "f1": 0.042535744519590024
     },
     {
       "strategy": "Fixed-size",
       "k": 3,
-      "precision": 0.043558320764203115,
-      "recall": 0.09365721997300944,
-      "f1": 0.05147443243031478
+      "precision": 0.04307983193277311,
+      "recall": 0.07452247265878628,
+      "f1": 0.048607873886915544
     },
     {
       "strategy": "Fixed-size",
       "k": 5,
-      "precision": 0.05161670385808317,
-      "recall": 0.14557324254692677,
-      "f1": 0.06783472708309793
+      "precision": 0.03875564537633503,
+      "recall": 0.11078517646130333,
+      "f1": 0.05148284687376283
     },
     {
       "strategy": "Fixed-size",
       "k": 10,
-      "precision": 0.04653036483333885,
-      "recall": 0.2249732248745407,
-      "f1": 0.07116122222029715
+      "precision": 0.03011831824514079,
+      "recall": 0.15536352712632853,
+      "f1": 0.047136453295383705
     },
     {
       "strategy": "Semantic breakpoint",
       "k": 1,
-      "precision": 0.03741308978377944,
-      "recall": 0.08990103463787674,
-      "f1": 0.03974663092614697
+      "precision": 0.02862258754675358,
+      "recall": 0.04059242663392069,
+      "f1": 0.02802030763629102
     },
     {
       "strategy": "Semantic breakpoint",
       "k": 3,
-      "precision": 0.04090868415685567,
-      "recall": 0.2131348001413791,
-      "f1": 0.05927384702698955
+      "precision": 0.022359830397453095,
+      "recall": 0.10983204698814059,
+      "f1": 0.03439986746851964
     },
     {
       "strategy": "Semantic breakpoint",
       "k": 5,
-      "precision": 0.02985652105358145,
-      "recall": 0.24246274558774558,
-      "f1": 0.0468693066332283
+      "precision": 0.017537305507127635,
+      "recall": 0.16291239738212673,
+      "f1": 0.03016012773063797
     },
     {
       "strategy": "Semantic breakpoint",
       "k": 10,
-      "precision": 0.021436550239780167,
-      "recall": 0.3917110667110667,
-      "f1": 0.039455103596163776
+      "precision": 0.013569947229735611,
+      "recall": 0.2244832709530003,
+      "f1": 0.024763936520796212
     },
     {
       "strategy": "Structure-aware",
       "k": 1,
-      "precision": 0.10833333333333332,
-      "recall": 0.02008097165991903,
-      "f1": 0.032767131242741
+      "precision": 0.08,
+      "recall": 0.02461357167868425,
+      "f1": 0.034301262843528336
     },
     {
       "strategy": "Structure-aware",
       "k": 3,
-      "precision": 0.09325757575757576,
-      "recall": 0.0882618404986826,
-      "f1": 0.0753586380004612
+      "precision": 0.05872413334859155,
+      "recall": 0.04723391738655118,
+      "f1": 0.04694955761157725
     },
     {
       "strategy": "Structure-aware",
       "k": 5,
-      "precision": 0.08364118118007437,
-      "recall": 0.12277817942291627,
-      "f1": 0.08773584736701959
+      "precision": 0.04725336888352168,
+      "recall": 0.07022391766760004,
+      "f1": 0.05054953390184974
     },
     {
       "strategy": "Structure-aware",
       "k": 10,
-      "precision": 0.05826435412202139,
-      "recall": 0.185595800398432,
-      "f1": 0.08146340443511982
+      "precision": 0.047910335005031966,
+      "recall": 0.1546421349410052,
+      "f1": 0.06718795419022372
     }
   ],
   "strategies": [
     {
       "strategy": "Fixed-size",
-      "chunking_seconds": 0.00716789998114109,
-      "indexing_seconds": 71.3988618000003,
-      "total_preprocess_seconds": 71.40602969998145,
-      "n_chunks": 622,
-      "avg_sentences_per_chunk": 5.918006430868167,
-      "chunk_index_raw_tokens": 116976,
-      "chunk_index_effective_tokens": 113325,
+      "chunking_seconds": 0.027890800000022864,
+      "indexing_seconds": 1019.7075910000003,
+      "total_preprocess_seconds": 1019.7354818000003,
+      "n_chunks": 3110,
+      "avg_sentences_per_chunk": 5.923472668810289,
+      "chunk_index_raw_tokens": 575659,
+      "chunk_index_effective_tokens": 572404,
       "semantic_decision_raw_tokens": 0,
       "semantic_decision_effective_tokens": 0,
-      "total_embedding_effective_tokens": 113325,
-      "avg_raw_tokens_per_chunk": 188.06430868167203,
-      "avg_effective_tokens_per_chunk": 182.1945337620579,
-      "p95_raw_tokens_per_chunk": 293.94999999999993,
-      "p95_effective_tokens_per_chunk": 256.0,
-      "truncated_chunks": 69,
-      "avg_retrieved_context_tokens_at_5": 857.125
+      "total_embedding_effective_tokens": 572404,
+      "avg_raw_tokens_per_chunk": 185.09935691318327,
+      "avg_effective_tokens_per_chunk": 184.05273311897105,
+      "p95_raw_tokens_per_chunk": 295.0,
+      "p95_effective_tokens_per_chunk": 295.0,
+      "truncated_chunks": 36,
+      "avg_retrieved_context_tokens_at_5": 822.7
     },
     {
       "strategy": "Semantic breakpoint",
-      "chunking_seconds": 33.848966200021096,
-      "indexing_seconds": 6.700511899980484,
-      "total_preprocess_seconds": 40.54947810000158,
-      "n_chunks": 160,
-      "avg_sentences_per_chunk": 19.24375,
-      "chunk_index_raw_tokens": 97590,
-      "chunk_index_effective_tokens": 29136,
-      "semantic_decision_raw_tokens": 103428,
-      "semantic_decision_effective_tokens": 103341,
-      "total_embedding_effective_tokens": 132477,
-      "avg_raw_tokens_per_chunk": 609.9375,
-      "avg_effective_tokens_per_chunk": 182.1,
-      "p95_raw_tokens_per_chunk": 2174.2999999999997,
-      "p95_effective_tokens_per_chunk": 256.0,
-      "truncated_chunks": 95,
-      "avg_retrieved_context_tokens_at_5": 982.525
+      "chunking_seconds": 945.4994717999998,
+      "indexing_seconds": 266.1428659999983,
+      "total_preprocess_seconds": 1211.6423377999981,
+      "n_chunks": 800,
+      "avg_sentences_per_chunk": 19.265,
+      "chunk_index_raw_tokens": 478887,
+      "chunk_index_effective_tokens": 202921,
+      "semantic_decision_raw_tokens": 508111,
+      "semantic_decision_effective_tokens": 508111,
+      "total_embedding_effective_tokens": 711032,
+      "avg_raw_tokens_per_chunk": 598.60875,
+      "avg_effective_tokens_per_chunk": 253.65125,
+      "p95_raw_tokens_per_chunk": 2049.199999999999,
+      "p95_effective_tokens_per_chunk": 384.0,
+      "truncated_chunks": 385,
+      "avg_retrieved_context_tokens_at_5": 966.688
     },
     {
       "strategy": "Structure-aware",
-      "chunking_seconds": 0.01538639998761937,
-      "indexing_seconds": 27.137447600020096,
-      "total_preprocess_seconds": 27.152834000007715,
-      "n_chunks": 971,
-      "avg_sentences_per_chunk": 3.196704428424305,
-      "chunk_index_raw_tokens": 99984,
-      "chunk_index_effective_tokens": 99405,
+      "chunking_seconds": 0.0995865999993839,
+      "indexing_seconds": 860.3492397000009,
+      "total_preprocess_seconds": 860.4488263000003,
+      "n_chunks": 4672,
+      "avg_sentences_per_chunk": 3.3409674657534247,
+      "chunk_index_raw_tokens": 492383,
+      "chunk_index_effective_tokens": 492023,
       "semantic_decision_raw_tokens": 0,
       "semantic_decision_effective_tokens": 0,
-      "total_embedding_effective_tokens": 99405,
-      "avg_raw_tokens_per_chunk": 102.97013388259526,
-      "avg_effective_tokens_per_chunk": 102.37384140061792,
-      "p95_raw_tokens_per_chunk": 217.0,
-      "p95_effective_tokens_per_chunk": 217.0,
-      "truncated_chunks": 18,
-      "avg_retrieved_context_tokens_at_5": 395.85
+      "total_embedding_effective_tokens": 492023,
+      "avg_raw_tokens_per_chunk": 105.39019691780823,
+      "avg_effective_tokens_per_chunk": 105.31314212328768,
+      "p95_raw_tokens_per_chunk": 231.0,
+      "p95_effective_tokens_per_chunk": 231.0,
+      "truncated_chunks": 7,
+      "avg_retrieved_context_tokens_at_5": 341.56
     }
   ],
   "example": {
-    "title": "How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings",
+    "title": "Mining Supervisor Evaluation and Peer Feedback in Performance Appraisals",
     "strategies": {
       "Fixed-size": [
         {
@@ -180,130 +180,130 @@
           "sentence_count": 6,
           "sentence_start": 0,
           "sentence_end": 5,
-          "text": "The application of deep learning methods to NLP is made possible by representing words as vectors in a low-dimensional continuous space. Traditionally, these word embeddings were static: each word had a single vector, regardless of context BIBREF0, BIBREF1. This posed several problems, most notably that all senses of a polysemous word had to share the same representation. More recent work, namely deep neural language models such as ELMo BIBREF2 and BERT BIBREF3, have successfully created contextualized word represe"
+          "text": "Performance appraisal (PA) is an important HR process, particularly for modern organizations that crucially depend on the skills and expertise of their workforce. The PA process enables an organization to periodically measure and evaluate every employee's performance. It also provides a mechanism to link the goals established by the organization to its each employee's day-to-day activities and performance. Design and analysis of PA processes is a lively area of research within the HR community BIBREF0 , BIBREF1 , B"
         },
         {
           "chunk": 2,
           "sentence_count": 6,
           "sentence_start": 5,
           "sentence_end": 10,
-          "text": "The success of contextualized word representations suggests that despite being trained with only a language modelling task, they learn highly transferable and task-agnostic properties of language. In fact, linear probing models trained on frozen contextualized representations can predict linguistic properties of words (e.g., part-of-speech tags) almost as well as state-of-the-art models BIBREF4, BIBREF5. Still, these representations remain poorly understood. For one, just how contextual are these contextualized wor"
+          "text": "Availability of this data in a computer-readable database opens up opportunities to analyze it using automated statistical, data-mining and text-mining techniques, to generate novel and actionable insights / patterns and to help in improving the quality and effectiveness of the PA process BIBREF4 , BIBREF5 , BIBREF6 . Automated analysis of large-scale PA data is now facilitated by technological and algorithmic advances, and is becoming essential for large organizations containing thousands of geographically distrib"
         },
         {
           "chunk": 3,
           "sentence_count": 6,
           "sentence_start": 10,
           "sentence_end": 15,
-          "text": "We answer this question by studying the geometry of the representation space for each layer of ELMo, BERT, and GPT-2. Our analysis yields some surprising findings: In all layers of all three models, the contextualized word representations of all words are not isotropic: they are not uniformly distributed with respect to direction. Instead, they are anisotropic, occupying a narrow cone in the vector space. The anisotropy in GPT-2's last layer is so extreme that two random words will on average have almost perfect co"
+          "text": "and (iii) in peer feedback (aka INLINEFORM0 view), the peers of the employee provide their feedback. There are several business questions that managers are interested in. Examples: In this paper, we develop text mining techniques that can automatically produce answers to these questions. Since the intended users are HR executives, ideally, the techniques should work with minimum training data and experimentation with parameter setting. These techniques have been implemented and are being used in a PA system in a la"
         },
         {
           "chunk": 4,
           "sentence_count": 6,
           "sentence_start": 15,
           "sentence_end": 20,
-          "text": "Given that isotropy has both theoretical and empirical benefits for static embeddings BIBREF6, the extent of anisotropy in contextualized representations is surprising. Occurrences of the same word in different contexts have non-identical vector representations. Where vector similarity is defined as cosine similarity, these representations are more dissimilar to each other in upper layers. This suggests that, much like how upper layers of LSTMs produce more task-specific representations BIBREF4, upper layers of con"
+          "text": "These techniques have been implemented and are being used in a PA system in a large multi-national IT company. The rest of the paper is organized as follows. Section SECREF2 summarizes related work. Section SECREF3 summarizes the PA dataset used in this paper. Section SECREF4 applies sentence classification algorithms to automatically discover three important classes of sentences in the PA corpus viz., sentences that discuss strengths, weaknesses of employees and contain suggestions for improving her performance."
         },
         {
           "chunk": 5,
           "sentence_count": 6,
           "sentence_start": 20,
           "sentence_end": 25,
-          "text": "In ELMo, representations of words in the same sentence grow more similar to each other as context-specificity increases in upper layers; in BERT, they become more dissimilar to each other in upper layers but are still more similar than randomly sampled words are on average; in GPT-2, however, words in the same sentence are no more similar to each other than two randomly chosen words. After adjusting for the effect of anisotropy, on average, less than 5% of the variance in a word's contextualized representations can"
+          "text": "sentences that discuss strengths, weaknesses of employees and contain suggestions for improving her performance. Section SECREF5 considers the problem of mapping the actual targets mentioned in strengths, weaknesses and suggestions to a fixed set of attributes. In Section SECREF6 , we discuss how the feedback from peers for a particular employee can be summarized. In Section SECREF7 we draw conclusions and identify some further work. We first review some work related to sentence classification. Semantically classif"
         },
         {
           "chunk": 6,
           "sentence_count": 6,
           "sentence_start": 25,
           "sentence_end": 30,
-          "text": "These insights help justify why the use of contextualized representations has led to such significant improvements on many NLP tasks. Skip-gram with negative sampling (SGNS) BIBREF0 and GloVe BIBREF1 are among the best known models for generating static word embeddings. Though they learn embeddings iteratively in practice, it has been proven that in theory, they both implicitly factorize a word-context matrix containing a co-occurrence statistic BIBREF7, BIBREF8. Because they create a single representation for each"
+          "text": "Semantically classifying sentences (based on the sentence's purpose) is a much harder task, and is gaining increasing attention from linguists and NLP researchers. McKnight and Srinivasan BIBREF7 and Yamamoto and Takagi BIBREF8 used SVM to classify sentences in biomedical abstracts into classes such as INTRODUCTION, BACKGROUND, PURPOSE, METHOD, RESULT, CONCLUSION. Cohen et al. BIBREF9 applied SVM and other techniques to learn classifiers for sentences in emails into classes, which are speech acts defined by a verb-"
         }
       ],
       "Semantic breakpoint": [
         {
           "chunk": 1,
-          "sentence_count": 11,
+          "sentence_count": 29,
           "sentence_start": 0,
-          "sentence_end": 10,
-          "text": "The application of deep learning methods to NLP is made possible by representing words as vectors in a low-dimensional continuous space. Traditionally, these word embeddings were static: each word had a single vector, regardless of context BIBREF0, BIBREF1. This posed several problems, most notably that all senses of a polysemous word had to share the same representation. More recent work, namely deep neural language models such as ELMo BIBREF2 and BERT BIBREF3, have successfully created contextualized word represe"
+          "sentence_end": 28,
+          "text": "Performance appraisal (PA) is an important HR process, particularly for modern organizations that crucially depend on the skills and expertise of their workforce. The PA process enables an organization to periodically measure and evaluate every employee's performance. It also provides a mechanism to link the goals established by the organization to its each employee's day-to-day activities and performance. Design and analysis of PA processes is a lively area of research within the HR community BIBREF0 , BIBREF1 , B"
         },
         {
           "chunk": 2,
           "sentence_count": 1,
-          "sentence_start": 11,
-          "sentence_end": 11,
-          "text": "Our analysis yields some surprising findings:"
+          "sentence_start": 29,
+          "sentence_end": 29,
+          "text": "Khoo et al."
         },
         {
           "chunk": 3,
-          "sentence_count": 10,
-          "sentence_start": 12,
-          "sentence_end": 21,
-          "text": "In all layers of all three models, the contextualized word representations of all words are not isotropic: they are not uniformly distributed with respect to direction. Instead, they are anisotropic, occupying a narrow cone in the vector space. The anisotropy in GPT-2's last layer is so extreme that two random words will on average have almost perfect cosine similarity! Given that isotropy has both theoretical and empirical benefits for static embeddings BIBREF6, the extent of anisotropy in contextualized represent"
+          "sentence_count": 8,
+          "sentence_start": 30,
+          "sentence_end": 37,
+          "text": "BIBREF11 uses various classifiers to classify sentences in emails into classes such as APOLOGY, INSTRUCTION, QUESTION, REQUEST, SALUTATION, STATEMENT, SUGGESTION, THANKING etc. Qadir and Riloff BIBREF12 proposes several filters and classifiers to classify sentences on message boards (community QA systems) into 4 speech acts: COMMISSIVE (speaker commits to a future action), DIRECTIVE (speaker expects listener to take some action), EXPRESSIVE (speaker expresses his or her psychological state to the listener), REPRESE"
         },
         {
           "chunk": 4,
-          "sentence_count": 1,
-          "sentence_start": 22,
-          "sentence_end": 22,
-          "text": "This holds across all layers of all models."
+          "sentence_count": 7,
+          "sentence_start": 38,
+          "sentence_end": 44,
+          "text": "We could not find much work related to mining of performance appraisals data. Pawar et al. BIBREF18 uses kernel-based classification to classify sentences in both performance appraisal text and product reviews into classes SUGGESTION, APPRECIATION, COMPLAINT. Apte et al. BIBREF6 provides two algorithms for matching the descriptions of goals or tasks assigned to employees to a standard template of model goals. One algorithm is based on the co-training framework and uses goal descriptions and self-appraisal comments "
         },
         {
           "chunk": 5,
-          "sentence_count": 54,
-          "sentence_start": 23,
-          "sentence_end": 76,
-          "text": "This suggests that contextualized representations do not correspond to a finite number of word-sense representations, and even in the best possible scenario, static embeddings would be a poor replacement for contextualized ones. Still, static embeddings created by taking the first principal component of a word's contextualized representations outperform GloVe and FastText embeddings on many word vector benchmarks. These insights help justify why the use of contextualized representations has led to such significant "
+          "sentence_count": 1,
+          "sentence_start": 45,
+          "sentence_end": 45,
+          "text": "Ramrakhiyani et al."
         },
         {
           "chunk": 6,
-          "sentence_count": 30,
-          "sentence_start": 77,
-          "sentence_end": 106,
-          "text": "To adjust for the effect of anisotropy, we use three anisotropic baselines, one for each of our contextuality measures. For self-similarity and intra-sentence similarity, the baseline is the average cosine similarity between the representations of uniformly randomly sampled words from different contexts. The more anisotropic the word representations are in a given layer, the closer this baseline is to 1. For maximum explainable variance (MEV), the baseline is the proportion of variance in uniformly randomly sampled"
+          "sentence_count": 13,
+          "sentence_start": 46,
+          "sentence_end": 58,
+          "text": "BIBREF5 proposes label propagation algorithms to discover aspects in supervisor assessments in performance appraisals, where an aspect is modelled as a verb-noun pair (e.g. conduct training, improve coding). In this paper, we used the supervisor assessment and peer feedback text produced during the performance appraisal of 4528 employees in a large multi-national IT company. The corpus of supervisor assessment has 26972 sentences. The summary statistics about the number of words in a sentence is: min:4 max:217 aver"
         }
       ],
       "Structure-aware": [
         {
           "chunk": 1,
-          "sentence_count": 5,
+          "sentence_count": 4,
           "sentence_start": 0,
-          "sentence_end": 4,
-          "text": "The application of deep learning methods to NLP is made possible by representing words as vectors in a low-dimensional continuous space. Traditionally, these word embeddings were static: each word had a single vector, regardless of context BIBREF0, BIBREF1. This posed several problems, most notably that all senses of a polysemous word had to share the same representation. More recent work, namely deep neural language models such as ELMo BIBREF2 and BERT BIBREF3, have successfully created contextualized word represe"
+          "sentence_end": 3,
+          "text": "Performance appraisal (PA) is an important HR process, particularly for modern organizations that crucially depend on the skills and expertise of their workforce. The PA process enables an organization to periodically measure and evaluate every employee's performance. It also provides a mechanism to link the goals established by the organization to its each employee's day-to-day activities and performance. Design and analysis of PA processes is a lively area of research within the HR community BIBREF0 , BIBREF1 , B"
         },
         {
           "chunk": 2,
-          "sentence_count": 5,
-          "sentence_start": 5,
-          "sentence_end": 9,
-          "text": "The success of contextualized word representations suggests that despite being trained with only a language modelling task, they learn highly transferable and task-agnostic properties of language. In fact, linear probing models trained on frozen contextualized representations can predict linguistic properties of words (e.g., part-of-speech tags) almost as well as state-of-the-art models BIBREF4, BIBREF5. Still, these representations remain poorly understood. For one, just how contextual are these contextualized wor"
+          "sentence_count": 3,
+          "sentence_start": 4,
+          "sentence_end": 6,
+          "text": "The PA process in any modern organization is nowadays implemented and tracked through an IT system (the PA system) that records the interactions that happen in various steps. Availability of this data in a computer-readable database opens up opportunities to analyze it using automated statistical, data-mining and text-mining techniques, to generate novel and actionable insights / patterns and to help in improving the quality and effectiveness of the PA process BIBREF4 , BIBREF5 , BIBREF6 . Automated analysis of lar"
         },
         {
           "chunk": 3,
-          "sentence_count": 2,
-          "sentence_start": 10,
-          "sentence_end": 11,
-          "text": "We answer this question by studying the geometry of the representation space for each layer of ELMo, BERT, and GPT-2. Our analysis yields some surprising findings:"
+          "sentence_count": 6,
+          "sentence_start": 7,
+          "sentence_end": 12,
+          "text": "A typical PA process involves purposeful multi-step multi-modal communication between employees, their supervisors and their peers. In most PA processes, the communication includes the following steps: (i) in self-appraisal, an employee records his/her achievements, activities, tasks handled etc.; ( ii) in supervisor assessment, the supervisor provides the criticism, evaluation and suggestions for improvement of performance etc.; and (iii) in peer feedback (aka INLINEFORM0 view), the peers of the employee provide t"
         },
         {
           "chunk": 4,
-          "sentence_count": 4,
-          "sentence_start": 12,
+          "sentence_count": 3,
+          "sentence_start": 13,
           "sentence_end": 15,
-          "text": "In all layers of all three models, the contextualized word representations of all words are not isotropic: they are not uniformly distributed with respect to direction. Instead, they are anisotropic, occupying a narrow cone in the vector space. The anisotropy in GPT-2's last layer is so extreme that two random words will on average have almost perfect cosine similarity! Given that isotropy has both theoretical and empirical benefits for static embeddings BIBREF6, the extent of anisotropy in contextualized represent"
+          "text": "In this paper, we develop text mining techniques that can automatically produce answers to these questions. Since the intended users are HR executives, ideally, the techniques should work with minimum training data and experimentation with parameter setting. These techniques have been implemented and are being used in a PA system in a large multi-national IT company."
         },
         {
           "chunk": 5,
-          "sentence_count": 3,
+          "sentence_count": 8,
           "sentence_start": 16,
-          "sentence_end": 18,
-          "text": "Occurrences of the same word in different contexts have non-identical vector representations. Where vector similarity is defined as cosine similarity, these representations are more dissimilar to each other in upper layers. This suggests that, much like how upper layers of LSTMs produce more task-specific representations BIBREF4, upper layers of contextualizing models produce more context-specific representations."
+          "sentence_end": 23,
+          "text": "The rest of the paper is organized as follows. Section SECREF2 summarizes related work. Section SECREF3 summarizes the PA dataset used in this paper. Section SECREF4 applies sentence classification algorithms to automatically discover three important classes of sentences in the PA corpus viz., sentences that discuss strengths, weaknesses of employees and contain suggestions for improving her performance. Section SECREF5 considers the problem of mapping the actual targets mentioned in strengths, weaknesses and sugge"
         },
         {
           "chunk": 6,
-          "sentence_count": 2,
-          "sentence_start": 19,
-          "sentence_end": 20,
-          "text": "Context-specificity manifests very differently in ELMo, BERT, and GPT-2. In ELMo, representations of words in the same sentence grow more similar to each other as context-specificity increases in upper layers; in BERT, they become more dissimilar to each other in upper layers but are still more similar than randomly sampled words are on average; in GPT-2, however, words in the same sentence are no more similar to each other than two randomly chosen words."
+          "sentence_count": 8,
+          "sentence_start": 24,
+          "sentence_end": 31,
+          "text": "We first review some work related to sentence classification. Semantically classifying sentences (based on the sentence's purpose) is a much harder task, and is gaining increasing attention from linguists and NLP researchers. McKnight and Srinivasan BIBREF7 and Yamamoto and Takagi BIBREF8 used SVM to classify sentences in biomedical abstracts into classes such as INTRODUCTION, BACKGROUND, PURPOSE, METHOD, RESULT, CONCLUSION. Cohen et al. BIBREF9 applied SVM and other techniques to learn classifiers for sentences in"
         }
       ]
     }
